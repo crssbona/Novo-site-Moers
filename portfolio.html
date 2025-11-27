@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Moers - Nossos Projetos</title>
+    <meta name="description" content="Confira os sites profissionais desenvolvidos pela Moers. Projetos personalizados para empresas, autônomos e e-commerce.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./images/Site/favicon-circulo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/style-planos.css"> 
+
+    <style>
+        .portfolio-page-header {
+            padding-top: 160px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            text-align: center;
+        }
+
+        .filter-wrapper {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .filter-group-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .filters-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-divider {
+            height: 1px;
+            width: 100px;
+            background: var(--border-color);
+            margin: 0 auto 30px auto;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-family);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .plan-filters .filter-btn.active {
+            background: var(--primary-dark);
+            border-color: var(--primary-dark);
+        }
+
+        /* --- ATUALIZAÇÃO DO GRID E FUNDO ANIMADO --- */
+        
+        /* Define a seção como relativa para conter as formas absolutas */
+        .portfolio {
+            position: relative;
+            overflow: hidden; /* Impede que as formas vazem */
+            background-color: var(--bg-alt); /* Fundo base suave */
+        }
+
+        /* Container para as formas animadas */
+        .portfolio-shapes-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Fica atrás de tudo */
+            pointer-events: none; /* Não interfere no clique */
+        }
+
+        /* Garante que o conteúdo do portfólio fique ACIMA das formas */
+        .portfolio .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            transition: all 0.5s ease;
+        }
+
+        @media (max-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .portfolio-item {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 1;
+            transform: scale(1);
+            background: white; /* Garante fundo branco no card para contraste */
+            z-index: 2; /* Garante que o card fique acima das formas */
+        }
+
+        .portfolio-item.hide-item {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+            position: absolute;
+            visibility: hidden;
+            width: 0;
+            height: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .portfolio-item.show-item {
+            opacity: 1;
+            transform: scale(1);
+            position: relative;
+            visibility: visible;
+            width: auto;
+            height: 100%;
+        }
+
+        .no-results-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            border: 1px dashed var(--border-color);
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        
+        .no-results-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .portfolio-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-category {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .plan-badge {
+            font-size: 0.7rem;
+            background: #f1f5f9;
+            color: var(--text-secondary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .card-footer-btn {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .portfolio-cta {
+            background: var(--primary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 0; /* Removido a margem superior de 80px */
+            position: relative;
+            z-index: 2;
+        }
+        
+        .portfolio-cta h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .portfolio-cta p {
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        .btn-white:hover {
+            background: #f8fafc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers" class="logo">
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link active" style="color: var(--primary-color);">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#processo" class="nav-link">Como Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#planos" class="nav-link">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contato.html" class="nav-link nav-cta">Fale Conosco</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="portfolio-page-header">
+        <div class="container">
+            <span class="badge" data-aos="fade-down">Nossos Trabalhos</span>
+            <h1 class="page-title" data-aos="fade-up" data-aos-delay="100">
+                Transformando ideias em <span class="highlight">realidade digital</span>
+            </h1>
+            <p class="page-subtitle" data-aos="fade-up" data-aos-delay="200">
+                Explore nossa galeria de projetos recentes. Use os filtros abaixo para encontrar o estilo ou plano ideal para o seu negócio.
+            </p>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid com Fundo Animado -->
+    <section class="portfolio" style="padding-top: 40px;">
+        
+        <!-- DIV PARA AS FORMAS ANIMADAS -->
+        <div class="portfolio-shapes-container" id="portfolioShapes"></div>
+
+        <div class="container">
+            
+            <!-- Wrapper dos Filtros -->
+            <div class="filter-wrapper" data-aos="fade-up">
+                
+                <!-- Filtros por Categoria -->
+                <span class="filter-group-label">Filtrar por Categoria</span>
+                <div class="filters-container category-filters">
+                    <button class="filter-btn active" data-filter="all" data-type="category">Todos</button>
+                    <button class="filter-btn" data-filter="institucional" data-type="category">Institucional</button>
+                    <button class="filter-btn" data-filter="ecommerce" data-type="category">E-commerce</button>
+                    <button class="filter-btn" data-filter="landing-page" data-type="category">Landing Pages</button>
+                    <button class="filter-btn" data-filter="autonomos" data-type="category">Autônomos</button>
+                </div>
+
+                <div class="filter-divider"></div>
+
+                <!-- Filtros por Plano -->
+                <span class="filter-group-label">Filtrar por Plano</span>
+                <div class="filters-container plan-filters">
+                    <button class="filter-btn active" data-filter="all" data-type="plan">Todos os Planos</button>
+                    <button class="filter-btn" data-filter="basico" data-type="plan">Plano Básico</button>
+                    <button class="filter-btn" data-filter="essencial" data-type="plan">Plano Essencial</button>
+                    <button class="filter-btn" data-filter="avancado" data-type="plan">Plano Avançado</button>
+                </div>
+
+            </div>
+
+            <div class="portfolio-grid">
+                
+                <div class="no-results-message" id="noResultsMsg">
+                    <p>Nenhum projeto encontrado com essa combinação de filtros. <br> Tente selecionar "Todos" em uma das categorias.</p>
+                </div>
+
+                <!-- Item 1: Institucional / Essencial -->
+                <div class="portfolio-item show-item" data-category="institucional" data-plan="essencial" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="./images/fonte-sem-fundo-site.png" alt="Site Institucional">
+                        <div class="portfolio-overlay">
+                            <h3>Consultoria RH</h3>
+                            <p>Estratégia de Marca</p>
+                            <div class="portfolio-stats">
+                                <span>+150% visitas</span>
+                                <span>+80% leads</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            Institucional
+                            <span class="plan-badge">Essencial</span>
+                        </div>
+                        <h3>Consultoria Vision</h3>
+                        <p>Site institucional moderno com área de blog e integração com ferramentas de RH.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Autônomos / Básico -->
+                <div class="portfolio-item show-item" data-category="autonomos" data-plan="basico" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-2.jpg" alt="Site para Autônomos" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Fotografia';">
+                        <div class="portfolio-overlay">
+                            <h3>Portfólio Fotografia</h3>
+                            <p>Identidade Visual</p>
+                            <div class="portfolio-stats">
+                                <span>+200% contratos</span>
+                                <span>Design Clean</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            Autônomos
+                            <span class="plan-badge">Básico</span>
+                        </div>
+                        <h3>João Santos Fotografia</h3>
+                        <p>Galeria interativa de alta resolução para apresentação de portfólio visual.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3: Landing Page / Essencial -->
+                <div class="portfolio-item show-item" data-category="landing-page" data-plan="essencial" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-3.jpg" alt="Landing Page" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Landing+Page';">
+                        <div class="portfolio-overlay">
+                            <h3>Landing Page Vendas</h3>
+                            <p>Alta Conversão</p>
+                            <div class="portfolio-stats">
+                                <span>+300% conversões</span>
+                                <span>Copywriting</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            Landing Page
+                            <span class="plan-badge">Essencial</span>
+                        </div>
+                        <h3>Curso Financeiro Pro</h3>
+                        <p>Página de captura otimizada para campanhas de tráfego pago com alta velocidade.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4: E-commerce / Avançado -->
+                <div class="portfolio-item show-item" data-category="ecommerce" data-plan="avancado" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-4.jpg" alt="E-commerce Moda" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Ecommerce+Moda';">
+                        <div class="portfolio-overlay">
+                            <h3>Boutique Online</h3>
+                            <p>E-commerce</p>
+                            <div class="portfolio-stats">
+                                <span>Checkout Transparente</span>
+                                <span>Mobile First</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            E-commerce
+                            <span class="plan-badge">Avançado</span>
+                        </div>
+                        <h3>Luna Moda Feminina</h3>
+                        <p>Loja virtual completa com gestão de estoque e integração com correios.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5: Institucional / Básico -->
+                <div class="portfolio-item show-item" data-category="institucional" data-plan="basico" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-5.jpg" alt="Advocacia" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Advocacia';">
+                        <div class="portfolio-overlay">
+                            <h3>Escritório Jurídico</h3>
+                            <p>Institucional</p>
+                            <div class="portfolio-stats">
+                                <span>SEO Local</span>
+                                <span>Autoridade</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            Institucional
+                            <span class="plan-badge">Básico</span>
+                        </div>
+                        <h3>Silva & Associados</h3>
+                        <p>Site sóbrio de página única (One Page) focado em credibilidade e contato rápido.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6: E-commerce / Avançado -->
+                <div class="portfolio-item show-item" data-category="ecommerce" data-plan="avancado" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-6.jpg" alt="App Delivery" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Delivery+App';">
+                        <div class="portfolio-overlay">
+                            <h3>Burger Delivery</h3>
+                            <p>Site de Pedidos</p>
+                            <div class="portfolio-stats">
+                                <span>Cardápio Digital</span>
+                                <span>Pedidos WhatsApp</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <div class="project-category">
+                            Alimentação
+                            <span class="plan-badge">Avançado</span>
+                        </div>
+                        <h3>Burger House</h3>
+                        <p>Cardápio digital interativo que envia os pedidos complexos diretamente para o WhatsApp.</p>
+                        <div class="card-footer-btn">
+                            <a href="#" class="btn btn-outline btn-full">Acessar site</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CTA Final -->
+    <section class="portfolio-cta" data-aos="fade-up">
+        <div class="container">
+            <h2>Gostou do que viu?</h2>
+            <p>Seu projeto pode ser o próximo destaque em nosso portfólio. Vamos criar algo incrível juntos?</p>
+            <a href="index.html#planos" class="btn btn-white btn-pill hover-effect">Contratar um Plano</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers" class="footer-logo">
+                    <p>Tornando a presença digital acessível e profissional para todos os negócios.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="index.html#home">Início</a></li>
+                        <li><a href="./termos-de-uso.html">Termos de uso</a></li>
+                        <li><a href="./politica-de-privacidade.html">Política de privacidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p>contato@moers.com.br</p>
+                    <p>+55 (11) 99999-9999</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Moers. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Script de Filtros + Fundo Animado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa AOS
+            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, easing: 'ease-out', once: true, offset: 100 });
+
+            // --- 1. Lógica de Fundo Animado Específico para Portfólio ---
+            function createPortfolioShapes() {
+                const container = document.getElementById('portfolioShapes');
+                if (!container) return;
+
+                const shapes = ['circle', 'square', 'triangle'];
+                const colors = ['var(--primary-color)', 'var(--primary-light)', 'var(--secondary-color)'];
+                
+                // Criar 15 formas
+                for (let i = 0; i < 15; i++) {
+                    const shape = document.createElement('div');
+                    const shapeType = shapes[Math.floor(Math.random() * shapes.length)];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    const size = Math.random() * 60 + 20; // Tamanho entre 20px e 80px
+                    
+                    // Estilos inline para posicionamento e animação
+                    shape.className = 'floating-shape';
+                    shape.style.position = 'absolute';
+                    shape.style.width = size + 'px';
+                    shape.style.height = size + 'px';
+                    shape.style.opacity = '0.1'; // Bem suave
+                    shape.style.left = Math.random() * 100 + '%';
+                    shape.style.top = Math.random() * 100 + '%';
+                    
+                    // Reutiliza a animação 'floatShape' definida no animations.js/css
+                    shape.style.animation = `floatShape ${8 + Math.random() * 4}s ease-in-out infinite`;
+                    shape.style.animationDelay = `${Math.random() * 2}s`;
+
+                    if (shapeType === 'circle') {
+                        shape.style.borderRadius = '50%';
+                        shape.style.background = color;
+                    } else if (shapeType === 'square') {
+                        shape.style.background = color;
+                    } else if (shapeType === 'triangle') {
+                        shape.style.width = '0';
+                        shape.style.height = '0';
+                        shape.style.background = 'transparent';
+                        shape.style.borderLeft = (size/2) + 'px solid transparent';
+                        shape.style.borderRight = (size/2) + 'px solid transparent';
+                        shape.style.borderBottom = size + 'px solid ' + color;
+                    }
+                    
+                    container.appendChild(shape);
+                }
+            }
+            // Executa a criação das formas
+            createPortfolioShapes();
+
+
+            // --- 2. Lógica de Filtragem ---
+            let state = { category: 'all', plan: 'all' };
+            const categoryBtns = document.querySelectorAll('.category-filters .filter-btn');
+            const planBtns = document.querySelectorAll('.plan-filters .filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            const noResultsMsg = document.getElementById('noResultsMsg');
+
+            function applyFilters() {
+                let visibleCount = 0;
+                portfolioItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+                    const itemPlan = item.getAttribute('data-plan');
+                    
+                    const matchesCategory = (state.category === 'all' || state.category === itemCategory);
+                    const matchesPlan = (state.plan === 'all' || state.plan === itemPlan);
+
+                    if (matchesCategory && matchesPlan) {
+                        item.classList.remove('hide-item');
+                        item.classList.add('show-item');
+                        visibleCount++;
+                    } else {
+                        item.classList.remove('show-item');
+                        item.classList.add('hide-item');
+                    }
+                });
+
+                if (visibleCount === 0) noResultsMsg.classList.add('show');
+                else noResultsMsg.classList.remove('show');
+
+                setTimeout(() => { if (typeof AOS !== 'undefined') AOS.refresh(); }, 550);
+            }
+
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.category = btn.getAttribute('data-filter');
+                    applyFilters();
+                });
+            });
+
+            planBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    planBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    state.plan = btn.getAttribute('data-filter');
+                    applyFilters();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

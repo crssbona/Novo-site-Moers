@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moers - Criação de Sites Profissionais | Sua Presença Digital Sem Complicações</title>
+    <meta name="description"
+        content="Criação de sites profissionais para pequenas empresas e autônomos. Suporte contínuo, design moderno e atualizações inclusas. Sua presença digital sem complicações!">
+    <meta name="keywords"
+        content="criação de sites, desenvolvimento web, sites profissionais, pequenas empresas, autônomos">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./images/Site/favicon-circulo.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+         /* --- CORREÇÃO DE LAYOUT MOBILE --- */
+        /* Impede scroll horizontal indesejado e trava a largura */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Garante que o header respeite a largura da tela */
+        .header {
+            width: 100%;
+            max-width: 100vw;
+            left: 0;
+            right: 0;
+        }
+
+        /* Força o container do menu a preencher o espaço, alinhando o hambúrguer */
+        .nav-container {
+            width: 100%;
+            padding-left: 20px;  /* Margem de segurança */
+            padding-right: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">
+                    <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers" class="logo">
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#processo" class="nav-link">Como Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#planos" class="nav-link">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contato.html" class="nav-link nav-cta">Fale Conosco</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">
+                    Sua empresa precisa de um site, mas você
+                    <span class="highlight">não tem tempo</span>
+                    nem conhecimento técnico?
+                </h1>
+                <p class="hero-subtitle">
+                    Nós criamos e gerenciamos seu site profissional para você.
+                    Você cuida do seu negócio, nós cuidamos da sua presença digital.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contato" class="btn btn-primary">
+                        Quero Meu Site
+                    </a>
+                    <a href="#portfolio" class="btn btn-secondary">
+                        Ver Trabalhos
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="300">
+                <div class="website-mockup">
+                    <div class="browser-header">
+                        <div class="browser-buttons">
+                            <span class="btn-close"></span>
+                            <span class="btn-minimize"></span>
+                            <span class="btn-maximize"></span>
+                        </div>
+                        <div class="browser-url">seusite.com.br</div>
+                    </div>
+                    <div class="website-content">
+                        <div class="loading-animation">
+                            <div class="code-lines">
+                                <div class="line"></div>
+                                <div class="line"></div>
+                                <div class="line"></div>
+                                <div class="line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem/Solution Section -->
+    <section class="problem-solution">
+        <div class="container">
+            <div class="section-content">
+                <div class="problem-side" data-aos="fade-right">
+                    <h2 class="section-title">Os problemas que você enfrenta:</h2>
+                    <div class="problem-list">
+                        <div class="problem-item">
+                            <span class="problem-icon"><img src="./images/Ícones/ícone-errado.png" alt="ícone negativo"
+                                    width="20px" height="20px"></span>
+                            <div class="problem-text">
+                                <h3>Falta de tempo</h3>
+                                <p>Você já tem muito trabalho para ainda se preocupar com site</p>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><img src="./images/Ícones/ícone-errado.png" alt="ícone negativo"
+                                    width="20px" height="20px"></span>
+                            <div class="problem-text">
+                                <h3>Conhecimento técnico</h3>
+                                <p>Programação, design, SEO... é muita coisa para aprender</p>
+                            </div>
+                        </div>
+                        <div class="problem-item">
+                            <span class="problem-icon"><img src="./images/Ícones/ícone-errado.png" alt="ícone negativo"
+                                    width="20px" height="20px"></span>
+                            <div class="problem-text">
+                                <h3>Manutenção constante</h3>
+                                <p>Criar é só o começo, depois precisa atualizar e manter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-side" data-aos="fade-left">
+                    <h2 class="section-title">Nossa solução:</h2>
+                    <div class="solution-list">
+                        <div class="solution-item">
+                            <span class="solution-icon"><img src="./images/Ícones/ícone-certo.png" alt="ícone positivo"
+                                    width="20px" height="20px"></span>
+                            <div class="solution-text">
+                                <h3>Fazemos tudo para você</h3>
+                                <p>Criação, lançamento e manutenção completa do seu site</p>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="solution-icon"><img src="./images/Ícones/ícone-certo.png" alt="ícone positivo"
+                                    width="20px" height="20px"></span>
+                            <div class="solution-text">
+                                <h3>Suporte contínuo</h3>
+                                <p>Atualizações, backups e otimizações sempre inclusos</p>
+                            </div>
+                        </div>
+                        <div class="solution-item">
+                            <span class="solution-icon"><img src="./images/Ícones/ícone-certo.png" alt="ícone positivo"
+                                    width="20px" height="20px"></span>
+                            <div class="solution-text">
+                                <h3>Preço acessível</h3>
+                                <p>Menos de R$4 por dia para ter um site profissional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Alguns sites que criamos</h2>
+                <p class="section-subtitle">Cada projeto é único e desenvolvido especialmente para o negócio do cliente
+                </p>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Item 1 -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="./images/Imagens dos sites/site-institucional.png" alt="Site Institucional" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Site+Institucional';">
+                        <div class="portfolio-overlay">
+                            <h3>Site Institucional</h3>
+                            <p>Empresa de consultoria</p>
+                            <div class="portfolio-stats">
+                                <span>+150% visitas</span>
+                                <span>+80% leads</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Site Institucional</h3>
+                        <p>Apresente sua empresa com um site moderno e otimizado</p>
+                        <p>Este site se encaixa no plano Essencial</p>
+                        <!-- BOTÃO ADICIONADO -->
+                        <a href="https://siteinstitucional.moers.com.br/" class="btn btn-outline btn-full mt-3" target="_blank">Acessar site</a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="./images/Imagens dos sites/site-para-autonomos.png" alt="Site para Autônomos" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Fotografia';">
+                        <div class="portfolio-overlay">
+                            <h3>Site para Autônomos</h3>
+                            <p>Consultoria</p>
+                            <div class="portfolio-stats">
+                                <span>+200% contratos</span>
+                                <span>+90% credibilidade</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Site para Autônomos</h3>
+                        <p>Destaque seu trabalho com um site profissional</p>
+                        <p>Este site se encaixa no plano Essencial</p>
+                        <!-- BOTÃO ADICIONADO -->
+                        <a href="https://siteparaautonomos.moers.com.br/" class="btn btn-outline btn-full mt-3" target="_blank">Acessar site</a>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-image">
+                        <img src="./images/Imagens dos sites/landing-page.png" alt="Landing Page" onerror="this.src='https://placehold.co/600x400/e0f2fe/2d799b?text=Landing+Page';">
+                        <div class="portfolio-overlay">
+                            <h3>Landing Page</h3>
+                            <p>Campanha de lançamento</p>
+                            <div class="portfolio-stats">
+                                <span>+300% conversões</span>
+                                <span>+120% vendas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Landing Page</h3>
+                        <p>Páginas otimizadas para captar leads e aumentar vendas</p>
+                        <p>Este site se encaixa no plano Essencial</p>
+                        <!-- BOTÃO ADICIONADO -->
+                        <a href="https://landingpage.moers.com.br/" class="btn btn-outline btn-full mt-3" target="_blank">Acessar site</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-actions" data-aos="fade-up" data-aos-delay="400">
+                <a href="portfolio.html" class="btn btn-secondary">Ver mais projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="processo" class="process">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Como funciona</h2>
+                <p class="section-subtitle">Processo simples e transparente, do primeiro contato ao suporte contínuo</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="100">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Primeiro Contato</h3>
+                        <p>Você nos conta sobre seu negócio e objetivos através do formulário, whatsapp ou chamada de
+                            vídeo</p>
+                        <div class="step-time">1 dia</div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Planejamento</h3>
+                        <p>Criamos a estrutura e design personalizado para seu site</p>
+                        <div class="step-time">2-3 dias</div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Desenvolvimento</h3>
+                        <p>Programamos seu site com as melhores práticas e otimizações</p>
+                        <div class="step-time">5-7 dias</div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Lançamento</h3>
+                        <p>Seu site vai ao ar e começamos o suporte contínuo</p>
+                        <div class="step-time">1 dia</div>
+                    </div>
+                </div>
+
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Suporte Contínuo</h3>
+                        <p>Atualizações, backups, otimizações e melhorias constantes</p>
+                        <div class="step-time">Sempre</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">O que nossos clientes dizem</h2>
+                <p class="section-subtitle">Depoimentos reais de quem confia na Moers</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-content">
+                        <p>"O suporte da Moers é excepcional. Nunca preciso me preocupar com o site, eles cuidam de
+                            tudo!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Maria Silva</h4>
+                            <span>Consultora de RH</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-content">
+                        <p>"Meu site trouxe muito mais credibilidade para meu trabalho. Os clientes me encontram
+                            facilmente agora."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>João Santos</h4>
+                            <span>Fotógrafo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-content">
+                        <p>"Investimento que vale cada centavo. Não preciso mais me preocupar com tecnologia, só com meu
+                            negócio."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>Ana Costa</h4>
+                            <span>Arquiteta</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="planos" class="pricing">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Planos que cabem no seu bolso</h2>
+                <p class="section-subtitle">Escolha o plano ideal para o seu negócio</p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-header">
+                        <h3>Básico</h3>
+                        <div class="pricing-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">99,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="pricing-description">Perfeito para começar</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Site simples com até 3 páginas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Design básico</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Hospedagem incluída</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Domínio grátis no 1º ano</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Certificado SSL gratuito</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Formulário de contato simples</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Responsividade</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><b>Suporte limitado</b> apenas para problemas técnicos e
+                                pequenas alterações.</span>
+                        </div>
+                    </div>
+                    <a href="./plano-basico.html" class="btn btn-outline">Saiba mais</a>
+                </div>
+
+                <div class="pricing-card featured" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-badge">Mais Popular</div>
+                    <div class="pricing-header">
+                        <h3>Essencial</h3>
+                        <div class="pricing-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">179,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="pricing-description">Para quem quer mais</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Site com até 5 páginas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Design com base na identidade do cliente</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Hospedagem incluída</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Domínio grátis no 1º ano</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Certificado SSL gratuito</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Responsividade</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Otimização básica de SEO</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Formulário de contato integrado</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>2 revisões gratuitas por mês (não cumulativo)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><b>Suporte incluso</b> enquanto a assinatura estiver
+                                ativa</span>
+                        </div>
+                    </div>
+                    <a href="./plano-essencial.html" class="btn btn-primary">Saiba Mais</a>
+                </div>
+
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-header">
+                        <h3>Profissional</h3>
+                        <div class="pricing-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">279,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <p class="pricing-description">Solução completa</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Site com até 10 páginas</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Design com base na identidade do cliente</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Hospedagem</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Domínio incluso</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Certificado SSL gratuito</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Formulário de contato integrado</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Responsividadeo</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>SEO avançado</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>5 revisões gratuitas por mês (não cumulativo)</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Google meu negócio configurado</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Integração com redes sociais e WhatsApp</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span><b>Suporte contínuo</b> e prioritário enquanto a
+                                assinatura estiver ativa</span>
+                        </div>
+                    </div>
+                    <a href="./plano-profissional.html" class="btn btn-outline">Saiba
+                        Mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers" class="footer-logo">
+                    <p>Tornando a presença digital acessível e profissional para todos os
+                        negócios.</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Úteis</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="./termos-de-uso.html">Termos de uso</a></li>
+                        <li><a href="./politica-de-privacidade.html">Política de
+                                privacidade</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p>contato@moers.com.br</p>
+                    <p>+55 (42) 99111-5749</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Moers. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+
+</html>

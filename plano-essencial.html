@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Essencial | Moers</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="icon" type="image/png" href="./images/Site/favicon-circulo.png">
+
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/style-planos.css">
+
+    <!-- CSS DO MODAL (Incorporado para garantir que funcione) -->
+    <style>
+        /* --- CORREÇÃO DE LAYOUT MOBILE --- */
+        /* Impede scroll horizontal indesejado e trava a largura */
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Garante que o header respeite a largura da tela */
+        .header {
+            width: 100%;
+            max-width: 100vw;
+            left: 0;
+            right: 0;
+        }
+
+        /* Força o container do menu a preencher o espaço, alinhando o hambúrguer */
+        .nav-container {
+            width: 100%;
+            padding-left: 20px;
+            /* Margem de segurança */
+            padding-right: 20px;
+        }
+
+
+        .success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .success-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.8) translateY(20px);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .success-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .modal-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: #ecfdf5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .modal-icon {
+            font-size: 40px;
+            color: #10b981;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+            transition-delay: 0.2s;
+        }
+
+        .success-modal.active .modal-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .modal-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #10b981;
+            opacity: 0;
+            transform: scale(1);
+        }
+
+        .success-modal.active .modal-icon-wrapper::after {
+            animation: pulse-ring 1.5s infinite;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: var(--text-body);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .modal-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .modal-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Atualizado para Igualar Index -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="index.html" class="nav-logo">
+                    <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers" class="logo">
+                </a>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="index.html#home" class="nav-link">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="portfolio.html" class="nav-link">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#processo" class="nav-link">Como Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#planos" class="nav-link">Planos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contato.html" class="nav-link nav-cta">Fale Conosco</a>
+                    </li>
+                </ul>
+
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="hero-section">
+        <div class="container">
+            <div data-aos="fade-up" data-aos-delay="100">
+                <span class="badge"
+                    style="background-color: var(--primary-light); color: var(--primary-dark); border-color: var(--primary);">Mais
+                    Popular</span>
+                <h1 class="page-title">Plano Essencial</h1>
+                <p class="page-subtitle">Mais flexibilidade e design profissional para destacar sua marca na internet.
+                </p>
+            </div>
+
+            <div class="price-block" data-aos="zoom-in" data-aos-delay="300">
+                <span class="price-value">R$ 179,90</span>
+                <span class="price-period">/mês</span>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="#formulario" class="btn-pill pulse-animation"
+                    style="background: var(--primary); box-shadow: 0 4px 12px rgba(68, 181, 232, 0.4);">
+                    Quero contratar agora
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content-grid">
+
+            <main class="main-content">
+                <div data-aos="fade-up">
+                    <h2 class="section-heading">Sobre o Plano</h2>
+                    <div class="text-block">
+                        <p>O Plano Essencial é ideal para empresas e profissionais que precisam de um site institucional
+                            mais completo, com um design personalizado e recursos adicionais para melhorar a presença
+                            online. Esse plano oferece mais flexibilidade e um site mais profissional do que o Plano
+                            Básico, sendo uma ótima escolha para quem deseja destacar sua marca na internet.</p>
+                    </div>
+                </div>
+
+                <h3 class="section-heading" style="font-size: 1.25rem; margin-bottom: 24px;" data-aos="fade-up">O que
+                    está incluso?</h3>
+
+                <div class="features-list">
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="feature-icon-box"><i class='bx bx-layer'></i></div>
+                        <div class="feature-content">
+                            <h3>Site com até 5 páginas</h3>
+                            <p>Mais espaço para informações detalhadas. Inclui Início, Sobre Nós, Serviços/Produtos,
+                                Contato e opcionalmente Portfólio.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="feature-icon-box"><i class='bx bx-paint'></i></div>
+                        <div class="feature-content">
+                            <h3>Design Personalizado</h3>
+                            <p>Desenvolvido com a identidade visual da sua marca. Inclui escolha de cores, fontes
+                                personalizadas e integração de ícones profissionais.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="feature-icon-box"><i class='bx bx-search-alt'></i></div>
+                        <div class="feature-content">
+                            <h3>Otimização Básica de SEO</h3>
+                            <p>Configuração de Meta Tags, URLs amigáveis e sitemap para melhorar sua visibilidade em
+                                motores de busca como o Google.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="feature-icon-box"><i class='bx bx-server'></i></div>
+                        <div class="feature-content">
+                            <h3>Hospedagem Inclusa</h3>
+                            <p>A Moers armazena e mantém o site ativo sem custo extra. Seu site sempre online e
+                                acessível.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="feature-icon-box"><i class='bx bx-globe'></i></div>
+                        <div class="feature-content">
+                            <h3>Domínio Grátis (1º ano)</h3>
+                            <p>Cobrimos o custo do domínio (ex: .com.br) no primeiro ano. Renovação anual por conta do
+                                cliente (~R$100).</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="feature-icon-box"><i class='bx bx-lock-alt'></i></div>
+                        <div class="feature-content">
+                            <h3>Segurança e Contato</h3>
+                            <p>Certificado SSL (Cadeado) gratuito e formulário de contato integrado para receber
+                                mensagens direto no e-mail.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="notice-box" data-aos="fade-in" data-aos-delay="600"
+                    style="border-left-color: var(--success);">
+                    <div class="notice-title" style="color: var(--success);">
+                        <i class='bx bx-check-circle'></i> Atualizações e Alterações
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-body);">
+                        <strong>2 revisões gratuitas por mês</strong> (não cumulativo). Você poderá solicitar ajustes
+                        pequenos como correções de texto e troca de imagens após a finalização.
+                    </p>
+                </div>
+            </main>
+
+            <aside class="sidebar">
+                <div class="sticky-wrapper">
+
+                    <div class="tech-card" data-aos="fade-left" data-aos-duration="800">
+                        <h3 class="section-heading" style="font-size: 1.25rem; margin-bottom: 0;">Ficha Técnica</h3>
+
+                        <ul class="tech-list">
+                            <li class="tech-item">
+                                <span class="tech-label">Páginas</span>
+                                <span class="tech-value">Até 5</span>
+                            </li>
+                            <li class="tech-item">
+                                <span class="tech-label">Design</span>
+                                <span class="tech-value">Personalizado</span>
+                            </li>
+                            <li class="tech-item">
+                                <span class="tech-label">SEO</span>
+                                <span class="tech-value">Básico</span>
+                            </li>
+                            <li class="tech-item">
+                                <span class="tech-label">Domínio</span>
+                                <span class="tech-value">Grátis (1 ano)</span>
+                            </li>
+                            <li class="tech-item">
+                                <span class="tech-label">Revisões</span>
+                                <span class="tech-value">2 por mês</span>
+                            </li>
+                            <li class="tech-item">
+                                <span class="tech-label">Prazo</span>
+                                <span class="tech-value">7-10 dias úteis</span>
+                            </li>
+                        </ul>
+
+                        <a href="https://wa.me/5511999999999" class="link-whatsapp" target="_blank">
+                            <i class='bx bxl-whatsapp'></i> Fale pelo WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="warning-card" data-aos="fade-up" data-aos-delay="200">
+                        <i class='bx bxs-error warning-icon'></i>
+                        <h4 class="warning-title">Atenção</h4>
+                        <span class="warning-subtitle">Não garantimos clientes</span>
+
+                        <p class="warning-text">
+                            Entregamos o site otimizado, mas não realizamos campanhas de marketing. O tráfego depende de
+                            estratégias de publicidade.
+                        </p>
+
+                        <a href="https://wa.me/5511999999999" target="_blank" class="btn-warning-small">
+                            Ainda tenho dúvidas
+                        </a>
+                    </div>
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <div id="formulario" class="form-wrapper">
+        <div class="container">
+            <div class="hero-section" style="padding-top: 0;" data-aos="fade-up">
+                <h2 class="section-heading">Vamos fechar negócio?</h2>
+                <p class="page-subtitle" style="margin-bottom: 0;">Preencha para dar início ao seu Plano Essencial.</p>
+            </div>
+
+            <div class="form-card" data-aos="fade-up" data-aos-delay="200">
+                <!-- FORMULÁRIO FUNCIONAL -->
+                <!-- Substitua SEU_EMAIL_AQUI pelo seu e-mail -->
+                <form id="checkoutForm" action="https://formsubmit.co/contato@moers.com.br" method="POST">
+
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_subject" value="Novo Pedido: Plano Essencial">
+
+                    <input type="hidden" name="plano" value="essencial">
+
+                    <!-- 1. Nome (Obrigatório) -->
+                    <div class="form-group">
+                        <label for="nome" class="form-label">Nome Completo *</label>
+                        <input type="text" id="nome" name="nome" class="form-input" required placeholder="Seu nome">
+                    </div>
+
+                    <!-- 2. CPF/CNPJ (Opcional) -->
+                    <div class="form-group">
+                        <label for="documento" class="form-label">CPF ou CNPJ (Opcional)</label>
+                        <input type="text" id="documento" name="documento" class="form-input"
+                            placeholder="000.000.000-00">
+                    </div>
+
+                    <!-- 3. Telefone com WhatsApp (Obrigatório) -->
+                    <div class="form-group">
+                        <label for="whatsapp" class="form-label">Telefone com WhatsApp *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="(00) 00000-0000"
+                            required>
+                    </div>
+
+                    <!-- 4. Email (Opcional) -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">Seu melhor E-mail (Opcional)</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com">
+                    </div>
+
+                    <button type="submit" class="btn-primary-full hover-effect">
+                        Solicitar Plano Essencial
+                    </button>
+
+                    <p style="font-size: 0.8rem; text-align: center; margin-top: 16px; color: var(--text-light);">
+                        Entraremos em contato em até 24h úteis.
+                    </p>
+                </form>
+            </div>
+            <div class="payment-trust-section" data-aos="fade-up" data-aos-delay="300">
+
+                <div class="payment-block">
+                    <p class="payment-label">Agente de pagamentos</p>
+                    <img src="./images/infinitepay.png" alt="InfinitePay" class="logo-agent">
+                </div>
+
+                <div class="payment-block">
+                    <p class="payment-label">Meios de pagamento aceitos</p>
+                    <div class="payment-methods-grid">
+                        <img src="./images/amex.png" alt="American Express" title="American Express">
+                        <img src="./images/visa.png" alt="Visa" title="Visa">
+                        <img src="./images/mastercard.png" alt="Mastercard" title="Mastercard">
+                        <img src="./images/Elo_logo.png" alt="Elo" title="Elo">
+                        <img src="./images/pix.png" alt="Pix" title="Pix">
+                        <img src="./images/boleto.png" alt="Boleto" title="Boleto">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE SUCESSO -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon-wrapper">
+                <span class="modal-icon">✓</span>
+            </div>
+            <h3 class="modal-title">Solicitação Enviada!</h3>
+            <p class="modal-text">Recebemos seu pedido para o Plano Essencial. Nossa equipe entrará em contato em breve
+                para os próximos passos.</p>
+            <button class="modal-btn" id="closeModalBtn">Voltar ao Site</button>
+        </div>
+    </div>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <p>&copy; 2025 Moers. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Adicionado main.js para funcionamento do menu mobile -->
+    <script src="js/main.js"></script>
+    <script>
+        // Inicializa as animações
+        AOS.init({
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // --- Lógica do Modal ---
+        const modal = document.getElementById('successModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        function showModal() {
+            modal.classList.add('active');
+        }
+
+        function hideModal() {
+            modal.classList.remove('active');
+        }
+
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', hideModal);
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+        // Script Funcional do Formulário
+        document.getElementById('checkoutForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            const formData = new FormData(this);
+            const actionUrl = this.getAttribute('action');
+
+            btn.innerText = 'Enviando...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        showModal(); // Mostra o modal em vez do alert
+                        this.reset();
+                    } else {
+                        alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    alert('Erro de conexão. Verifique sua internet.');
+                    console.error('Erro:', error);
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                });
+        });
+
+        // Máscara de WhatsApp
+        const phoneInput = document.getElementById('whatsapp');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function (e) {
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
+                if (value.length > 2) value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+                if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
+                else if (value.length > 6) value = `${value.slice(0, 9)}-${value.slice(9)}`;
+                e.target.value = value;
+            });
+        }
+    </script>
+
+</body>
+
+</html>
