@@ -21,10 +21,10 @@
 
     <!-- CSS DO MODAL -->
     <style>
-
-         /* --- CORREÇÃO DE LAYOUT MOBILE --- */
+        /* --- CORREÇÃO DE LAYOUT MOBILE --- */
         /* Impede scroll horizontal indesejado e trava a largura */
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
@@ -41,7 +41,8 @@
         /* Força o container do menu a preencher o espaço, alinhando o hambúrguer */
         .nav-container {
             width: 100%;
-            padding-left: 20px;  /* Margem de segurança */
+            padding-left: 20px;
+            /* Margem de segurança */
             padding-right: 20px;
         }
 
@@ -53,8 +54,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro transparente */
-            display: none; /* Oculto por padrão */
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Fundo escuro transparente */
+            display: none;
+            /* Oculto por padrão */
             align-items: center;
             justify-content: center;
             z-index: 9999;
@@ -78,7 +81,8 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             transform: scale(0.8) translateY(20px);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); /* Efeito elástico */
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            /* Efeito elástico */
         }
 
         .success-modal.active .modal-content {
@@ -131,8 +135,15 @@
         }
 
         @keyframes pulse-ring {
-            0% { transform: scale(0.9); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+            0% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         .modal-title {
@@ -385,11 +396,11 @@
                 <!-- FORMULÁRIO FUNCIONAL -->
                 <!-- Substitua SEU_EMAIL_AQUI pelo seu e-mail -->
                 <form id="checkoutForm" action="https://formsubmit.co/contato@moers.com.br" method="POST">
-                    
+
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="Novo Pedido: Plano Básico">
-                    
+
                     <input type="hidden" name="plano" value="basico">
 
                     <!-- 1. Nome (Obrigatório) -->
@@ -401,13 +412,15 @@
                     <!-- 2. CPF/CNPJ (Opcional) -->
                     <div class="form-group">
                         <label for="documento" class="form-label">CPF ou CNPJ (Opcional)</label>
-                        <input type="text" id="documento" name="documento" class="form-input" placeholder="000.000.000-00">
+                        <input type="text" id="documento" name="documento" class="form-input"
+                            placeholder="000.000.000-00">
                     </div>
 
                     <!-- 3. Telefone com WhatsApp (Obrigatório) -->
                     <div class="form-group">
                         <label for="whatsapp" class="form-label">Telefone com WhatsApp *</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="(00) 00000-0000" required>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="(00) 00000-0000"
+                            required>
                     </div>
 
                     <!-- 4. Email (Opcional) -->
@@ -416,6 +429,13 @@
                         <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com">
                     </div>
 
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <label for="termos">
+                            Concordo com os <a href="termos-de-uso.html" target="_blank">termos de uso</a> e <a
+                                href="politica-de-privacidade.html" target="_blank">política de privacidade</a>.
+                        </label>
+                    </div>
                     <button type="submit" class="btn-primary-full hover-effect">
                         Solicitar Plano Básico
                     </button>
@@ -455,7 +475,8 @@
                 <span class="modal-icon">✓</span>
             </div>
             <h3 class="modal-title">Solicitação Enviada!</h3>
-            <p class="modal-text">Recebemos seu pedido para o Plano Básico. Nossa equipe entrará em contato em breve para os próximos passos.</p>
+            <p class="modal-text">Recebemos seu pedido para o Plano Básico. Nossa equipe entrará em contato em breve
+                para os próximos passos.</p>
             <button class="modal-btn" id="closeModalBtn">Voltar ao Site</button>
         </div>
     </div>
@@ -472,10 +493,10 @@
     <script>
         // Inicializa as animações
         AOS.init({
-            once: true, 
-            offset: 100, 
-            duration: 800, 
-            easing: 'ease-out-cubic', 
+            once: true,
+            offset: 100,
+            duration: 800,
+            easing: 'ease-out-cubic',
         });
 
         // --- Lógica do Modal ---
@@ -517,31 +538,31 @@
                 body: formData,
                 headers: { 'Accept': 'application/json' }
             })
-            .then(response => {
-                if (response.ok) {
-                    showModal(); // Mostra o modal em vez do alert
-                    this.reset();
-                } else {
-                    alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
-                }
-            })
-            .catch(error => {
-                alert('Erro de conexão. Verifique sua internet.');
-                console.error('Erro:', error);
-            })
-            .finally(() => {
-                btn.innerText = originalText;
-                btn.style.opacity = '1';
-                btn.disabled = false;
-            });
+                .then(response => {
+                    if (response.ok) {
+                        showModal(); // Mostra o modal em vez do alert
+                        this.reset();
+                    } else {
+                        alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    alert('Erro de conexão. Verifique sua internet.');
+                    console.error('Erro:', error);
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                });
         });
 
         // Máscara de WhatsApp (Opcional, mas recomendado)
         const phoneInput = document.getElementById('whatsapp');
         if (phoneInput) {
             phoneInput.addEventListener('input', function (e) {
-                let value = e.target.value.replace(/\D/g, ''); 
-                if (value.length > 11) value = value.slice(0, 11); 
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
                 if (value.length > 2) value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
                 if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
                 else if (value.length > 6) value = `${value.slice(0, 9)}-${value.slice(9)}`;

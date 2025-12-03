@@ -23,7 +23,8 @@
     <style>
         /* --- CORREÇÃO DE LAYOUT MOBILE --- */
         /* Impede scroll horizontal indesejado e trava a largura */
-        html, body {
+        html,
+        body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
@@ -40,44 +41,135 @@
         /* Força o container do menu a preencher o espaço, alinhando o hambúrguer */
         .nav-container {
             width: 100%;
-            padding-left: 20px;  /* Margem de segurança */
+            padding-left: 20px;
+            /* Margem de segurança */
             padding-right: 20px;
         }
 
         /* --- MODAL DE SUCESSO --- */
         .success-modal {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); display: none;
-            align-items: center; justify-content: center; z-index: 9999;
-            backdrop-filter: blur(5px); opacity: 0; transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .success-modal.active { display: flex; opacity: 1; }
+
+        .success-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
         .modal-content {
-            background: white; padding: 40px; border-radius: 20px; text-align: center;
-            max-width: 450px; width: 90%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: scale(0.8) translateY(20px); opacity: 0;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.8) translateY(20px);
+            opacity: 0;
             transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
-        .success-modal.active .modal-content { transform: scale(1) translateY(0); opacity: 1; }
+
+        .success-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
         .modal-icon-wrapper {
-            width: 80px; height: 80px; background: #ecfdf5; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; position: relative;
+            width: 80px;
+            height: 80px;
+            background: #ecfdf5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
         }
-        .modal-icon { font-size: 40px; color: #10b981; opacity: 0; transform: scale(0.5); transition: all 0.4s ease; transition-delay: 0.2s; }
-        .success-modal.active .modal-icon { opacity: 1; transform: scale(1); }
+
+        .modal-icon {
+            font-size: 40px;
+            color: #10b981;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.4s ease;
+            transition-delay: 0.2s;
+        }
+
+        .success-modal.active .modal-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .modal-icon-wrapper::after {
-            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            border: 2px solid #10b981; opacity: 0; transform: scale(1);
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #10b981;
+            opacity: 0;
+            transform: scale(1);
         }
-        .success-modal.active .modal-icon-wrapper::after { animation: pulse-ring 1.5s infinite; animation-delay: 0.4s; }
-        @keyframes pulse-ring { 0% { transform: scale(0.9); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
-        .modal-title { font-size: 1.5rem; font-weight: 700; color: var(--text-heading); margin-bottom: 10px; }
-        .modal-text { color: var(--text-body); margin-bottom: 25px; line-height: 1.5; }
+
+        .success-modal.active .modal-icon-wrapper::after {
+            animation: pulse-ring 1.5s infinite;
+            animation-delay: 0.4s;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            color: var(--text-body);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
         .modal-btn {
-            background: var(--primary); color: white; border: none; padding: 12px 30px;
-            border-radius: 50px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: 100%; font-family: 'Montserrat', sans-serif;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
         }
-        .modal-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+        .modal-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
@@ -121,7 +213,8 @@
     <div class="hero-section">
         <div class="container">
             <div data-aos="fade-up" data-aos-delay="100">
-                <span class="badge" style="background-color: #f0fdf4; color: #15803d; border-color: #15803d;">Solução Completa</span>
+                <span class="badge" style="background-color: #f0fdf4; color: #15803d; border-color: #15803d;">Solução
+                    Completa</span>
                 <h1 class="page-title">Plano Profissional</h1>
                 <p class="page-subtitle">Recursos avançados e SEO para maximizar sua visibilidade no Google.</p>
             </div>
@@ -147,7 +240,10 @@
                 <div data-aos="fade-up">
                     <h2 class="section-heading">Sobre o Plano</h2>
                     <div class="text-block">
-                        <p>O Plano Profissional é ideal para empresas, profissionais e negócios que querem um site altamente otimizado, com recursos avançados para melhorar a presença online e aumentar a visibilidade no Google. Esse plano inclui SEO avançado, integração com redes sociais e configurações essenciais para maximizar a performance do site.</p>
+                        <p>O Plano Profissional é ideal para empresas, profissionais e negócios que querem um site
+                            altamente otimizado, com recursos avançados para melhorar a presença online e aumentar a
+                            visibilidade no Google. Esse plano inclui SEO avançado, integração com redes sociais e
+                            configurações essenciais para maximizar a performance do site.</p>
                     </div>
                 </div>
 
@@ -159,7 +255,8 @@
                         <div class="feature-icon-box"><i class='bx bx-layer-plus'></i></div>
                         <div class="feature-content">
                             <h3>Site com até 10 páginas</h3>
-                            <p>Estrutura completa para detalhar serviços e produtos. Inclui Home, Sobre Nós, Serviços, Portfólio/Depoimentos, Contato e até Blog/Notícias.</p>
+                            <p>Estrutura completa para detalhar serviços e produtos. Inclui Home, Sobre Nós, Serviços,
+                                Portfólio/Depoimentos, Contato e até Blog/Notícias.</p>
                         </div>
                     </div>
 
@@ -167,7 +264,8 @@
                         <div class="feature-icon-box"><i class='bx bx-trending-up'></i></div>
                         <div class="feature-content">
                             <h3>SEO Avançado & Performance</h3>
-                            <p>Configuração do Google Search Console, pesquisa de palavras-chave, otimização de velocidade e linkagem interna para melhor ranking.</p>
+                            <p>Configuração do Google Search Console, pesquisa de palavras-chave, otimização de
+                                velocidade e linkagem interna para melhor ranking.</p>
                         </div>
                     </div>
 
@@ -175,7 +273,8 @@
                         <div class="feature-icon-box"><i class='bx bx-map'></i></div>
                         <div class="feature-content">
                             <h3>Google Meu Negócio</h3>
-                            <p>Criação e otimização do seu perfil para aparecer nas pesquisas locais e no Google Maps com destaque.</p>
+                            <p>Criação e otimização do seu perfil para aparecer nas pesquisas locais e no Google Maps
+                                com destaque.</p>
                         </div>
                     </div>
 
@@ -183,7 +282,8 @@
                         <div class="feature-icon-box"><i class='bx bx-paint'></i></div>
                         <div class="feature-content">
                             <h3>Design Avançado</h3>
-                            <p>Identidade visual completa com cores e fontes personalizadas, layout ajustado ao negócio e integração de ícones profissionais.</p>
+                            <p>Identidade visual completa com cores e fontes personalizadas, layout ajustado ao negócio
+                                e integração de ícones profissionais.</p>
                         </div>
                     </div>
 
@@ -191,7 +291,8 @@
                         <div class="feature-icon-box"><i class='bx bx-share-alt'></i></div>
                         <div class="feature-content">
                             <h3>Redes Sociais & WhatsApp</h3>
-                            <p>Integração com Facebook, Instagram e LinkedIn, além de botão fixo de WhatsApp para aumentar a conversão de leads.</p>
+                            <p>Integração com Facebook, Instagram e LinkedIn, além de botão fixo de WhatsApp para
+                                aumentar a conversão de leads.</p>
                         </div>
                     </div>
 
@@ -199,17 +300,20 @@
                         <div class="feature-icon-box"><i class='bx bx-server'></i></div>
                         <div class="feature-content">
                             <h3>Infraestrutura Completa</h3>
-                            <p>Hospedagem, domínio incluso e Certificado SSL inclusos para manter seu site seguro e online.</p>
+                            <p>Hospedagem, domínio incluso e Certificado SSL inclusos para manter seu site seguro e
+                                online.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="notice-box" data-aos="fade-in" data-aos-delay="600" style="border-left-color: var(--primary-dark); background-color: #f0f9ff;">
+                <div class="notice-box" data-aos="fade-in" data-aos-delay="600"
+                    style="border-left-color: var(--primary-dark); background-color: #f0f9ff;">
                     <div class="notice-title" style="color: var(--primary-dark);">
                         <i class='bx bx-star'></i> Suporte Premium
                     </div>
                     <p style="font-size: 0.9rem; color: var(--text-body);">
-                        <strong>5 revisões gratuitas por mês</strong> (não cumulativo). Flexibilidade total para ajustes de layout, modificações de texto, imagens e correções pontuais de design.
+                        <strong>5 revisões gratuitas por mês</strong> (não cumulativo). Flexibilidade total para ajustes
+                        de layout, modificações de texto, imagens e correções pontuais de design.
                     </p>
                 </div>
             </main>
@@ -258,7 +362,8 @@
                         <span class="warning-subtitle">Não garantimos clientes</span>
 
                         <p class="warning-text">
-                            Otimizamos seu site para o Google (SEO), mas o tráfego também depende de estratégias de marketing e publicidade paga.
+                            Otimizamos seu site para o Google (SEO), mas o tráfego também depende de estratégias de
+                            marketing e publicidade paga.
                         </p>
 
                         <a href="https://wa.me/5511999999999" target="_blank" class="btn-warning-small">
@@ -276,18 +381,19 @@
         <div class="container">
             <div class="hero-section" style="padding-top: 0;" data-aos="fade-up">
                 <h2 class="section-heading">Vamos alavancar seu negócio?</h2>
-                <p class="page-subtitle" style="margin-bottom: 0;">Preencha para dar início ao seu Plano Profissional.</p>
+                <p class="page-subtitle" style="margin-bottom: 0;">Preencha para dar início ao seu Plano Profissional.
+                </p>
             </div>
 
             <div class="form-card" data-aos="fade-up" data-aos-delay="200">
                 <!-- FORMULÁRIO FUNCIONAL -->
                 <!-- Substitua SEU_EMAIL_AQUI pelo seu e-mail -->
                 <form id="checkoutForm" action="https://formsubmit.co/contato@moers.com.br" method="POST">
-                    
+
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_subject" value="Novo Pedido: Plano Profissional">
-                    
+
                     <input type="hidden" name="plano" value="profissional">
 
                     <!-- 1. Nome (Obrigatório) -->
@@ -299,13 +405,15 @@
                     <!-- 2. CPF/CNPJ (Opcional) -->
                     <div class="form-group">
                         <label for="documento" class="form-label">CPF ou CNPJ (Opcional)</label>
-                        <input type="text" id="documento" name="documento" class="form-input" placeholder="000.000.000-00">
+                        <input type="text" id="documento" name="documento" class="form-input"
+                            placeholder="000.000.000-00">
                     </div>
 
                     <!-- 3. Telefone com WhatsApp (Obrigatório) -->
                     <div class="form-group">
                         <label for="whatsapp" class="form-label">Telefone com WhatsApp *</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="(00) 00000-0000" required>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="(00) 00000-0000"
+                            required>
                     </div>
 
                     <!-- 4. Email (Opcional) -->
@@ -314,6 +422,13 @@
                         <input type="email" id="email" name="email" class="form-input" placeholder="seu@email.com">
                     </div>
 
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="termos" name="termos" required>
+                        <label for="termos">
+                            Concordo com os <a href="termos-de-uso.html" target="_blank">termos de uso</a> e <a
+                                href="politica-de-privacidade.html" target="_blank">política de privacidade</a>.
+                        </label>
+                    </div>
                     <button type="submit" class="btn-primary-full hover-effect">
                         Solicitar Plano Profissional
                     </button>
@@ -323,7 +438,7 @@
                     </p>
                 </form>
             </div>
-            
+
             <div class="payment-trust-section" data-aos="fade-up" data-aos-delay="300">
                 <div class="payment-block">
                     <p class="payment-label">Agente de pagamentos</p>
@@ -352,7 +467,8 @@
                 <span class="modal-icon">✓</span>
             </div>
             <h3 class="modal-title">Solicitação Enviada!</h3>
-            <p class="modal-text">Recebemos seu pedido para o Plano Profissional. Nossa equipe entrará em contato em breve para os próximos passos.</p>
+            <p class="modal-text">Recebemos seu pedido para o Plano Profissional. Nossa equipe entrará em contato em
+                breve para os próximos passos.</p>
             <button class="modal-btn" id="closeModalBtn">Voltar ao Site</button>
         </div>
     </div>
@@ -413,31 +529,31 @@
                 body: formData,
                 headers: { 'Accept': 'application/json' }
             })
-            .then(response => {
-                if (response.ok) {
-                    showModal(); // Mostra o modal em vez do alert
-                    this.reset();
-                } else {
-                    alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
-                }
-            })
-            .catch(error => {
-                alert('Erro de conexão. Verifique sua internet.');
-                console.error('Erro:', error);
-            })
-            .finally(() => {
-                btn.innerText = originalText;
-                btn.style.opacity = '1';
-                btn.disabled = false;
-            });
+                .then(response => {
+                    if (response.ok) {
+                        showModal(); // Mostra o modal em vez do alert
+                        this.reset();
+                    } else {
+                        alert('Ocorreu um erro ao enviar. Por favor, tente novamente.');
+                    }
+                })
+                .catch(error => {
+                    alert('Erro de conexão. Verifique sua internet.');
+                    console.error('Erro:', error);
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                });
         });
 
         // Máscara de WhatsApp
         const phoneInput = document.getElementById('whatsapp');
         if (phoneInput) {
             phoneInput.addEventListener('input', function (e) {
-                let value = e.target.value.replace(/\D/g, ''); 
-                if (value.length > 11) value = value.slice(0, 11); 
+                let value = e.target.value.replace(/\D/g, '');
+                if (value.length > 11) value = value.slice(0, 11);
                 if (value.length > 2) value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
                 if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
                 else if (value.length > 6) value = `${value.slice(0, 9)}-${value.slice(9)}`;
