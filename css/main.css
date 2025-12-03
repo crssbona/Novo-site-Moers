@@ -795,7 +795,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.9));
+    background: linear-gradient(135deg, #44b5e8d6, #2d799bcc);
     display: flex;
     flex-direction: column;
     justify-content: center;
