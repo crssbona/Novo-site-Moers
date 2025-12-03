@@ -354,6 +354,7 @@ p {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1444,7 +1445,8 @@ p {
     .solution-item {
         flex-direction: column;
         text-align: center;
-        align-items: center; /* Fix for centering icons */
+        align-items: center;
+        /* Fix for centering icons */
     }
 
     .portfolio-overlay {
@@ -1672,5 +1674,140 @@ p {
     .pricing-card,
     .testimonial-item {
         page-break-inside: avoid;
+    }
+}
+
+/* --- Card Enterprise (Adicionar ao final do main.css) --- */
+
+.pricing-enterprise {
+    margin-top: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--background-dark), #1f2937);
+    border-radius: var(--border-radius-2xl);
+    padding: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+    color: white;
+    box-shadow: var(--shadow-xl);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (min-width: 1024px) {
+    .pricing-enterprise {
+        grid-template-columns: 1.5fr 1fr;
+        align-items: center;
+        padding: var(--spacing-2xl);
+    }
+
+    .enterprise-action {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding-left: var(--spacing-xl);
+    }
+}
+
+.enterprise-tag {
+    display: inline-block;
+    background: rgba(68, 181, 232, 0.2);
+    /* Baseado na primary-color */
+    color: var(--primary-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--border-radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.enterprise-header h3 {
+    font-size: var(--font-size-2xl);
+    color: white;
+    margin-bottom: var(--spacing-xs);
+}
+
+.enterprise-header p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--font-size-lg);
+    max-width: 600px;
+}
+
+.enterprise-features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+    margin-top: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+    .enterprise-features {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Ajuste para itens dentro do fundo escuro */
+.feature-item.dark-mode {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.feature-item.dark-mode .feature-icon {
+    background: var(--primary-color);
+    /* Destaque azul em vez de verde */
+    color: white;
+}
+
+.pricing-price.dark-mode .amount {
+    font-size: var(--font-size-3xl);
+    /* Um pouco menor que os números numéricos */
+    color: white;
+}
+
+.pricing-price.dark-mode .currency {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.enterprise-note {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: var(--font-size-lg);
+}
+
+/* Elemento Decorativo Abstrato */
+.enterprise-bg-shape {
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(68, 181, 232, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Responsividade Mobile para Action */
+@media (max-width: 1023px) {
+    .enterprise-action {
+        text-align: left;
+        align-items: flex-start;
+        padding-top: var(--spacing-lg);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .enterprise-bg-shape {
+        width: 300px;
+        height: 300px;
+        top: -20%;
+        right: -20%;
     }
 }
