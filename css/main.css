@@ -1226,6 +1226,21 @@ p {
     flex-shrink: 0;
 }
 
+.feature-group-title {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: var(--spacing-sm) 0 var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding-bottom: 4px;
+}
+
+.pricing-card.featured .feature-group-title {
+    color: white; /* Ajuste para o fundo azul do card destaque */
+    border-bottom-color: rgba(255,255,255,0.3);
+}
+
 /* Contact Section */
 .contact {
     padding: var(--spacing-3xl) 0;
