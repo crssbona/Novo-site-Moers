@@ -1798,16 +1798,58 @@ p {
     font-size: var(--font-size-lg);
 }
 
-/* Elemento Decorativo Abstrato */
-.enterprise-bg-shape {
-    position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(68, 181, 232, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
-    z-index: 0;
-    pointer-events: none;
+/* --- TÍTULO PREMIUM (Com Animação Viva) --- */
+
+.hero-title-premium {
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 2.75rem;
+    line-height: 1.1;
+    color: #0f172a;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
+}
+
+/* Gradiente Animado (Efeito Alive) */
+.premium-gradient {
+    /* Cores mais vivas e em maior quantidade para o movimento */
+    background: linear-gradient(
+        120deg,
+        var(--primary-color) 0%, 
+        var(--primary-dark) 25%, 
+        var(--primary-dark) 50%, 
+        var(--primary-dark) 75%, 
+        var(--secondary-color) 100%
+    );
+    background-size: 200% auto; /* Aumenta o fundo para poder mover */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* A mágica acontece aqui: movimento contínuo e suave */
+    animation: gradientFlow 4.5s linear infinite reverse;
+    
+    filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.15));
+    padding-bottom: 5px;
+}
+
+/* Keyframes para mover o gradiente */
+@keyframes gradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* Responsividade (Mantida) */
+@media (min-width: 768px) {
+    .hero-title-premium { font-size: 3.5rem; }
+}
+
+@media (min-width: 1024px) {
+    .hero-title-premium { 
+        font-size: 4.2rem;
+        max-width: 800px;
+    }
+    .desktop-break { display: block; margin-bottom: 0.2em; }
 }
 
 /* Responsividade Mobile para Action */
