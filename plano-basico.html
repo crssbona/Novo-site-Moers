@@ -207,8 +207,8 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSFRF23"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSFRF23" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Header Atualizado para Igualar Index -->
@@ -572,16 +572,81 @@
                 });
         });
 
-        // Máscara de WhatsApp (Opcional, mas recomendado)
+        // --- MÁSCARAS INTELIGENTES (COM CORREÇÃO DE APAGAR) ---
+
+        // 1. Telefone (WhatsApp)
         const phoneInput = document.getElementById('whatsapp');
         if (phoneInput) {
+            const formatPhone = (val) => {
+                let v = val.replace(/\D/g, ""); // Limpa
+                if (v.length > 11) v = v.slice(0, 11); // Limita
+
+                if (v.length > 10) return v.replace(/^(\d\d)(\d{5})(\d{4}).*/, "($1) $2-$3");
+                if (v.length > 5) return v.replace(/^(\d\d)(\d{4})(\d{0,4}).*/, "($1) $2-$3");
+                if (v.length > 2) return v.replace(/^(\d\d)(\d{0,5}).*/, "($1) $2");
+                if (v.length > 0) return v.replace(/^(\d\d)(.*)/, "($1) $2");
+                return v;
+            };
+
             phoneInput.addEventListener('input', function (e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) value = value.slice(0, 11);
-                if (value.length > 2) value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-                if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
-                else if (value.length > 6) value = `${value.slice(0, 9)}-${value.slice(9)}`;
-                e.target.value = value;
+                e.target.value = formatPhone(e.target.value);
+            });
+
+            // CORREÇÃO DEFINITIVA DO BACKSPACE
+            phoneInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace') {
+                    const cursor = this.selectionStart;
+                    // Se o caractere antes do cursor não for um número (é ), - ou espaço)
+                    if (cursor > 0 && /\D/.test(this.value[cursor - 1])) {
+                        // Procura o primeiro número voltando para trás
+                        let newCursor = cursor;
+                        while (newCursor > 0 && /\D/.test(this.value[newCursor - 1])) {
+                            newCursor--;
+                        }
+                        // Move o cursor para logo depois desse número
+                        // Assim o Backspace padrão vai apagar o número, e não o símbolo
+                        this.setSelectionRange(newCursor, newCursor);
+                    }
+                }
+            });
+        }
+
+        // 2. CPF e CNPJ
+        const docInput = document.getElementById('documento');
+        if (docInput) {
+            const formatDoc = (val) => {
+                let v = val.replace(/\D/g, "");
+                if (v.length > 14) v = v.slice(0, 14);
+
+                if (v.length <= 11) { // CPF
+                    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                    v = v.replace(/(\d{3})(\d)/, "$1.$2");
+                    v = v.replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+                } else { // CNPJ
+                    v = v.replace(/^(\d{2})(\d)/, "$1.$2");
+                    v = v.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3");
+                    v = v.replace(/\.(\d{3})(\d)/, ".$1/$2");
+                    v = v.replace(/(\d{4})(\d)/, "$1-$2");
+                }
+                return v;
+            };
+
+            docInput.addEventListener('input', function (e) {
+                e.target.value = formatDoc(e.target.value);
+            });
+
+            // Mesma lógica para o CPF/CNPJ
+            docInput.addEventListener('keydown', function (e) {
+                if (e.key === 'Backspace') {
+                    const cursor = this.selectionStart;
+                    if (cursor > 0 && /\D/.test(this.value[cursor - 1])) {
+                        let newCursor = cursor;
+                        while (newCursor > 0 && /\D/.test(this.value[newCursor - 1])) {
+                            newCursor--;
+                        }
+                        this.setSelectionRange(newCursor, newCursor);
+                    }
+                }
             });
         }
     </script>
