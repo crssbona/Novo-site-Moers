@@ -864,6 +864,7 @@
                     }
 
                     // Validação Telefone
+                    const phoneInput = document.getElementById('contact-phone');
                     const phoneRaw = phoneInput.value.replace(/\D/g, '');
                     if (phoneInput.value.trim() && phoneRaw.length < 10) {
                         showError(phoneInput, true);
