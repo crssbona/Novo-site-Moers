@@ -768,7 +768,6 @@ p {
 }
 
 .portfolio-item:hover {
-    transform: translateY(-8px);
     box-shadow: var(--shadow-xl);
 }
 
@@ -796,7 +795,7 @@ p {
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, #44b5e8d6, #2d799bcc);
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -926,8 +925,8 @@ p {
 }
 
 .step-content {
-    background: white;
-    padding: var(--spacing-xl);
+    background: var(--background-secondary);
+    padding: 35px;
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-md);
     flex: 1;
@@ -1237,8 +1236,9 @@ p {
 }
 
 .pricing-card.featured .feature-group-title {
-    color: white; /* Ajuste para o fundo azul do card destaque */
-    border-bottom-color: rgba(255,255,255,0.3);
+    color: white;
+    /* Ajuste para o fundo azul do card destaque */
+    border-bottom-color: rgba(255, 255, 255, 0.3);
 }
 
 /* Contact Section */

@@ -338,64 +338,6 @@
             font-weight: 500;
         }
 
-        /* Seção FAQ */
-        .faq-section {
-            padding: 80px 0;
-            background: var(--background-secondary);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question {
-            padding: 20px 25px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .faq-question:hover {
-            background-color: #f8fafc;
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            padding: 0 25px;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-            opacity: 0;
-        }
-
-        .faq-item.active .faq-answer {
-            padding-top: 15px;
-            padding-bottom: 25px;
-            max-height: 500px;
-            opacity: 1;
-        }
-
-        .faq-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
         /* Mapa Visual (Opcional) */
         .map-section {
             height: 400px;
@@ -788,36 +730,6 @@
     <!-- Script Funcional: Validação, Máscara, Custom Select, Envio e MODAL -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Inicializa AOS
-            if (typeof AOS !== 'undefined') AOS.init({ duration: 800, easing: 'ease-out', once: true, offset: 100 });
-
-            // 1. Accordion (FAQ)
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                    item.classList.toggle('active');
-                });
-            });
-
-            // 2. Máscara de WhatsApp
-            const phoneInput = document.getElementById('contact-phone');
-            if (phoneInput) {
-                phoneInput.addEventListener('input', function (e) {
-                    let value = e.target.value.replace(/\D/g, '');
-                    if (value.length > 11) value = value.slice(0, 11);
-                    if (value.length > 2) value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-                    if (value.length > 9) value = `${value.slice(0, 10)}-${value.slice(10)}`;
-                    else if (value.length > 6) value = `${value.slice(0, 9)}-${value.slice(9)}`;
-                    e.target.value = value;
-                });
-            }
-
             // 3. Custom Select Logic
             const selectElement = document.querySelector('.custom-select-source');
             if (selectElement) {
