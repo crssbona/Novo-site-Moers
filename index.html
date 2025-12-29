@@ -61,15 +61,78 @@
             /* Margem de segurança */
             padding-right: 20px;
         }
+
+        /* --- ESTILOS DO FAQ (Adicionar ao css/main.css) --- */
+
+        .faq-section {
+            padding: 0px 0px 80px 0px;
+            background: var(--background-secondary);
+            /* Certifique-se que essa variável existe ou use #f8fafc */
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            /* Ajustado caso a var(--shadow-sm) não exista na home */
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-primary);
+            /* Ajuste para #1e293b se a variável não existir */
+        }
+
+        .faq-question:hover {
+            background-color: #f8fafc;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            color: #64748b;
+            /* Cor cinza texto */
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-top: 15px;
+            padding-bottom: 25px;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
     </style>
 </head>
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSFRF23"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RSFRF23" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-     
+
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
@@ -437,7 +500,7 @@
                     <div class="pricing-features">
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Site One-Page (até 3 seções)</span>
+                            <span>Até 3 Páginas</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">✓</span>
@@ -586,6 +649,83 @@
 
                 <!-- Elemento decorativo de fundo -->
                 <div class="enterprise-bg-shape"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2 class="section-title">Perguntas Frequentes</h2>
+                <p class="section-subtitle">Tire suas dúvidas antes mesmo de entrar em contato</p>
+            </div>
+
+            <div class="faq-container">
+                <!-- Pergunta 1 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="faq-question">
+                        Quanto custa para criar um site?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nossos planos começam a partir de R$ 99,90 mensais no plano Básico. Este valor inclui a
+                            criação, hospedagem, domínio (no 1º ano) e suporte. Não cobramos taxa de adesão surpresa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 2 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="faq-question">
+                        Em quanto tempo meu site fica pronto?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O prazo médio varia de acordo com o plano. Sites Básicos e Essenciais geralmente são
+                            entregues entre 5 a 10 dias úteis após o recebimento/confirmação do material necessário
+                            (textos e fotos).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 3 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="faq-question">
+                        Eu preciso pagar hospedagem separada?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não! Todos os nossos planos já incluem hospedagem de alta performance e certificado de
+                            segurança SSL. Você não precisa se preocupar com custos técnicos extras.</p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 4 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        Posso cancelar quando quiser?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, trabalhamos com transparência. O contrato pode ser cancelado mediante aviso prévio de 5
+                            dias, sem multas abusivas.</p>
+                    </div>
+                </div>
+
+                <!-- Pergunta 5 -->
+                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="faq-question">
+                        Se eu cancelar antes de 1 ano, posso levar o site comigo?
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Não. A liberação dos arquivos do site (código-fonte) e a transferência do domínio são
+                            benefícios exclusivos para clientes que completam o ciclo de 12 meses. Se o cancelamento
+                            ocorrer antes desse período, o serviço é interrompido e os ativos permanecem com a Moers,
+                            conforme nossos <a href="./termos-de-uso.html">Termos de uso</a>.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
