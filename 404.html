@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página não encontrada | Moers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./images/Site/favicon-circulo.png">
+    <style>
+        :root {
+            --primary-color: #44b5e8;
+            --dark-color: #1a1a1a;
+            --text-color: #4a4a4a;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: var(--dark-color);
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .logo {
+            max-width: 180px;
+            margin-bottom: 40px;
+            /* Se o logo for SVG ou PNG transparente */
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 0.8;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            color: var(--dark-color);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--dark-color);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-home:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Efeito visual de fundo */
+        .bg-shape {
+            position: absolute;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.1;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-shape"
+        style="width: 300px; height: 300px; background: var(--primary-color); top: -100px; left: -100px;"></div>
+    <div class="bg-shape"
+        style="width: 400px; height: 400px; background: var(--dark-color); bottom: -150px; right: -150px;"></div>
+
+    <div class="container">
+        <img src="./images/Site/fonte-sem-fundo-site.png" alt="Moers Logo" class="logo">
+
+        <div class="error-code">404</div>
+
+        <h1>Perdido no caminho?</h1>
+        <p>A página que você está procurando não existe ou foi movida para um novo endereço. Não se preocupe, estamos
+            aqui para ajudar você a voltar ao fluxo.</p>
+
+        <a href="https://moers.com.br" class="btn-home">Ir para a página inicial</a>
+    </div>
+
+</body>
+
+</html>
