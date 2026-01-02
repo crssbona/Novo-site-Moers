@@ -1855,7 +1855,7 @@ p {
 /* Responsividade Mobile para Action */
 @media (max-width: 1023px) {
     .enterprise-action {
-        text-align: left;
+        text-align: center;
         align-items: flex-start;
         padding-top: var(--spacing-lg);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
